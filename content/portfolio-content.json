@@ -1,0 +1,248 @@
+{
+  "site": {
+    "name": "Gurdeep Singh",
+    "role": "DevOps Engineer | Platform Engineer",
+    "heroSummary": "Lead DevOps engineer with 6+ years of experience building secure, cloud-native platforms on AWS, Kubernetes, and modern CI/CD systems for banking, fintech, and e-commerce workloads.",
+    "location": "Srinagar, Jammu & Kashmir, India",
+    "email": "gurdeep.67ece15@gmail.com",
+    "linkedin": "",
+    "website": "",
+    "resumeFile": "/uploads/resume-gurdeep-singh-devops.pdf",
+    "resumeLabel": "Download Resume",
+    "about": [
+      "I specialize in platform engineering, Kubernetes operations, AWS infrastructure, and delivery automation across production environments that demand scale, resilience, and strong security controls.",
+      "My experience spans building EKS platforms from scratch, leading DevOps modernization, improving observability and cost efficiency, and enabling teams with reliable CI/CD, infrastructure as code, and operational automation."
+    ]
+  },
+  "skills": {
+    "intro": "My technical work centers on AWS platform engineering, Kubernetes operations, infrastructure automation, observability, and DevSecOps for high-availability production systems.",
+    "categories": [
+      {
+        "title": "Cloud and Infrastructure",
+        "items": [
+          "AWS",
+          "EC2",
+          "S3",
+          "RDS",
+          "VPC",
+          "EKS",
+          "ECS",
+          "Route 53",
+          "CloudFront"
+        ]
+      },
+      {
+        "title": "Containers and Platform Engineering",
+        "items": [
+          "Docker",
+          "Kubernetes",
+          "Istio",
+          "Devtron",
+          "Apache Kafka",
+          "Airflow",
+          "EMR on EKS"
+        ]
+      },
+      {
+        "title": "Infrastructure as Code and Configuration",
+        "items": [
+          "Terraform",
+          "Ansible",
+          "Chef",
+          "HashiCorp Vault"
+        ]
+      },
+      {
+        "title": "CI/CD and DevSecOps",
+        "items": [
+          "Jenkins",
+          "Git",
+          "SAST",
+          "Dependency Scanning",
+          "Container Security",
+          "Rundeck"
+        ]
+      },
+      {
+        "title": "Observability and Reliability",
+        "items": [
+          "Grafana",
+          "EFK Stack",
+          "New Relic",
+          "Site24x7",
+          "Cloudflare",
+          "Cost Optimization"
+        ]
+      },
+      {
+        "title": "Systems, Databases, and Automation",
+        "items": [
+          "Linux",
+          "Nginx",
+          "Apache",
+          "MySQL",
+          "MongoDB",
+          "Redis",
+          "Elasticsearch",
+          "Shell/Bash",
+          "Python"
+        ]
+      }
+    ]
+  },
+  "outages": {
+    "intro": "These entries summarize the kinds of production issues, resilience work, and recovery responsibilities I have owned across banking, e-commerce, and messaging platforms.",
+    "items": [
+      {
+        "title": "Mission-Critical Banking Platform Reliability on AWS EKS",
+        "company": "Axis Bank - ChargeNex / Freechargebiz",
+        "period": "02/2024 - Present",
+        "impact": "High-availability production platform",
+        "situation": "Owned end-to-end cloud infrastructure for a production banking platform running on AWS EKS, where stability, security, observability, and controlled change management were critical.",
+        "actions": [
+          "Architected and deployed a production-grade EKS platform from scratch, including VPC design, node groups, and cluster hardening.",
+          "Managed microservices infrastructure with Istio for traffic management, observability, and mTLS-based service security.",
+          "Supported event-driven workloads with Kafka, Airflow, and EMR on EKS while maintaining availability, scalability, and operational control."
+        ],
+        "outcome": "Delivered a resilient cloud platform foundation for a mission-critical banking workload with stronger reliability, security, and scalability."
+      },
+      {
+        "title": "Disaster Recovery Readiness and Failover Automation",
+        "company": "Valuefirst, a Twilio company",
+        "period": "11/2019 - 09/2021",
+        "impact": "Business continuity and recovery preparedness",
+        "situation": "Supported Linux-based production environments where minimizing downtime and preparing for recovery scenarios were key operational responsibilities.",
+        "actions": [
+          "Monitored infrastructure and application health using Site24x7 to detect issues early and respond proactively.",
+          "Automated routine operational workflows with Shell/Bash and Ansible to reduce manual recovery effort.",
+          "Supported active disaster recovery planning and automated DR switch procedures for faster recovery during operational issues."
+        ],
+        "outcome": "Improved operational readiness and reduced the effort required to execute recovery actions under pressure."
+      },
+      {
+        "title": "High-Traffic E-commerce Production Stability",
+        "company": "Nykaa",
+        "period": "09/2021 - 02/2024",
+        "impact": "Large-scale customer-facing production systems",
+        "situation": "Managed AWS infrastructure, deployment pipelines, and observability tooling for high-traffic e-commerce workloads that required fast diagnosis and dependable platform behavior.",
+        "actions": [
+          "Scaled and maintained AWS services across compute, storage, networking, and container platforms for production workloads.",
+          "Deployed and monitored EFK, Grafana, and New Relic to improve real-time visibility into platform health and application behavior.",
+          "Strengthened traffic and edge protection with Kong, Varnish, and Cloudflare-based controls."
+        ],
+        "outcome": "Improved platform resilience, production visibility, and deployment consistency across customer-facing services."
+      }
+    ]
+  },
+  "projects": {
+    "intro": "These are some of the platform, automation, and modernization initiatives I have led or contributed to across recent roles.",
+    "items": [
+      {
+        "title": "Production AWS EKS Platform Buildout",
+        "subtitle": "Platform Engineering",
+        "period": "02/2024 - Present",
+        "stack": "AWS, EKS, Kubernetes, Istio",
+        "summary": "Built a production-grade AWS EKS platform from scratch for a banking workload, covering network design, cluster setup, hardening, and operational readiness.",
+        "outcomes": [
+          "Established a secure and scalable Kubernetes foundation for mission-critical services.",
+          "Improved platform control with service mesh-based traffic management, observability, and mTLS."
+        ],
+        "linkLabel": "",
+        "linkUrl": ""
+      },
+      {
+        "title": "Kubernetes Resource Optimization Solution",
+        "subtitle": "Infrastructure Efficiency",
+        "period": "02/2024 - Present",
+        "stack": "Kubernetes, AWS, Platform Operations",
+        "summary": "Built an optimization approach for Kubernetes workloads to improve cluster utilization and infrastructure efficiency across environments.",
+        "outcomes": [
+          "Improved workload efficiency through better resource awareness and tuning.",
+          "Supported cost optimization goals alongside platform stability."
+        ],
+        "linkLabel": "",
+        "linkUrl": ""
+      },
+      {
+        "title": "DevSecOps Controls in Delivery Pipelines",
+        "subtitle": "CI/CD Modernization",
+        "period": "02/2024 - Present",
+        "stack": "Jenkins, SAST, Dependency Scanning, Container Security",
+        "summary": "Introduced DevSecOps practices into CI/CD pipelines so security checks became part of the standard delivery flow instead of a later-stage manual activity.",
+        "outcomes": [
+          "Integrated static analysis, dependency scanning, and container security into deployment workflows.",
+          "Improved pipeline maturity and security posture across engineering environments."
+        ],
+        "linkLabel": "",
+        "linkUrl": ""
+      },
+      {
+        "title": "Observability and Automation for E-commerce Platforms",
+        "subtitle": "Reliability Engineering",
+        "period": "09/2021 - 02/2024",
+        "stack": "EFK, Grafana, New Relic, Jenkins, Python",
+        "summary": "Strengthened production operations for high-traffic e-commerce systems through observability rollout, pipeline automation, and task automation scripting.",
+        "outcomes": [
+          "Enabled better real-time monitoring, logging, and alerting across services.",
+          "Reduced repetitive operational work with Python-based automation."
+        ],
+        "linkLabel": "",
+        "linkUrl": ""
+      },
+      {
+        "title": "Disaster Recovery Switch Automation",
+        "subtitle": "Operational Continuity",
+        "period": "11/2019 - 09/2021",
+        "stack": "Shell/Bash, Ansible, Linux, Site24x7",
+        "summary": "Supported disaster recovery preparedness by automating recovery switch procedures and improving operational response readiness for production systems.",
+        "outcomes": [
+          "Reduced manual effort during DR execution and recovery workflows.",
+          "Improved business continuity preparedness through operational automation."
+        ],
+        "linkLabel": "",
+        "linkUrl": ""
+      }
+    ]
+  },
+  "experience": {
+    "intro": "My experience spans DevOps, platform engineering, cloud infrastructure, observability, and operational automation across banking, e-commerce, and communication technology domains.",
+    "items": [
+      {
+        "company": "Freechargebiz (formerly Freecharge)",
+        "role": "Lead DevOps Engineer",
+        "period": "02/2024 - Present",
+        "location": "India",
+        "summary": "Leading DevOps and platform engineering initiatives across internal product infrastructure and the Axis Bank ChargeNex engagement, with ownership spanning AWS, Kubernetes, security, cost optimization, and platform modernization.",
+        "highlights": [
+          "Architected and deployed a production-grade AWS EKS platform from scratch, including network design, cluster setup, and hardening.",
+          "Led infrastructure reliability, modernization, OS/application patching, migration planning, and cost optimization efforts.",
+          "Introduced DevSecOps controls into CI/CD and mentored team members on Kubernetes, cloud best practices, and infrastructure operations."
+        ]
+      },
+      {
+        "company": "Nykaa",
+        "role": "DevOps Engineer",
+        "period": "09/2021 - 02/2024",
+        "location": "India",
+        "summary": "Managed and scaled AWS infrastructure, CI/CD systems, observability tooling, and container platforms for high-traffic e-commerce workloads.",
+        "highlights": [
+          "Supported production workloads across EC2, S3, RDS, VPC, EKS, ECS, Route 53, and CloudFront.",
+          "Built and maintained Jenkins pipelines and shared libraries to improve deployment efficiency and reduce manual intervention.",
+          "Implemented automation, observability, and security controls using Python, EFK, Grafana, New Relic, Kong, Varnish, and Cloudflare WAF."
+        ]
+      },
+      {
+        "company": "Valuefirst, a Twilio company",
+        "role": "TechOps Engineer",
+        "period": "11/2019 - 09/2021",
+        "location": "India",
+        "summary": "Managed Linux-based production environments, operational automation, databases, monitoring, and disaster recovery support for business-critical services.",
+        "highlights": [
+          "Automated operational workflows with Shell/Bash and Ansible to improve efficiency and reduce manual effort.",
+          "Administered MySQL and MongoDB environments and supported smooth deployments with minimal downtime.",
+          "Contributed to disaster recovery planning, failover automation, and delivery of the internal Infinito project."
+        ]
+      }
+    ]
+  }
+}

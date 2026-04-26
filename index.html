@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevOps Portfolio</title>
+    <meta
+      name="description"
+      content="A resume portfolio for a DevOps and Platform Engineer."
+    />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <script src="/assets/js/site.js" defer></script>
+  </head>
+  <body data-page="home">
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="/">
+          <span class="brand-mark">01</span>
+          <div>
+            <p class="brand-label js-site-name">Your Name</p>
+            <p class="brand-subtitle">Platform Engineering Portfolio</p>
+          </div>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <a class="nav-link" data-nav="home" href="/">Home</a>
+          <a class="nav-link" data-nav="skills" href="/skills/">Skills</a>
+          <a class="nav-link" data-nav="outages" href="/outages/">Outages</a>
+          <a class="nav-link" data-nav="projects" href="/projects/">Projects</a>
+          <a class="nav-link" data-nav="experience" href="/experience/">Experience</a>
+        </nav>
+      </header>
+
+      <main class="page page-home">
+        <section class="hero panel">
+          <div class="hero-copy">
+            <p class="eyebrow">DevOps Engineer / Platform Engineer</p>
+            <h1 class="hero-title js-site-name">Your Name</h1>
+            <p class="hero-role js-site-role">DevOps Engineer | Platform Engineer</p>
+            <p class="hero-summary" id="hero-summary">
+              Add your short positioning statement in the portfolio content file.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" id="resume-link" href="/uploads/resume.pdf" download>
+                Download Resume
+              </a>
+              <a class="button button-secondary" id="email-link" href="mailto:your.email@example.com">
+                Contact by Email
+              </a>
+            </div>
+          </div>
+          <aside class="hero-panel">
+            <p class="panel-title">Contact</p>
+            <ul class="contact-list" id="contact-list"></ul>
+          </aside>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel about-panel">
+            <div class="section-heading">
+              <p class="eyebrow">Profile</p>
+              <h2>About Me</h2>
+            </div>
+            <div class="stacked-copy" id="about-content"></div>
+          </article>
+
+          <article class="panel overview-panel">
+            <div class="section-heading">
+              <p class="eyebrow">Overview</p>
+              <h2>Portfolio Snapshot</h2>
+            </div>
+            <div class="stats-grid" id="stats-grid"></div>
+          </article>
+        </section>
+
+        <section class="panel preview-panel">
+          <div class="section-heading">
+            <p class="eyebrow">Quick Access</p>
+            <h2>What This Portfolio Covers</h2>
+          </div>
+          <div class="preview-grid" id="page-previews"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer"></footer>
+    </div>
+  </body>
+</html>
