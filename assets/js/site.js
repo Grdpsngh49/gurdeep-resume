@@ -1,4 +1,6 @@
 const CONTENT_FILE = "/content/portfolio-content.json";
+const INTRO_STORAGE_KEY = "portfolioIntroSeen";
+const INTRO_MIN_DURATION = 2100;
 
 const page = document.body.dataset.page;
 const pageTitles = {
@@ -185,24 +187,24 @@ const renderHome = (data) => {
     "#hero-console",
     [
       {
-        label: "role.current",
+        label: "platform.focus",
         value: site.role || "DevOps Engineer | Platform Engineer",
       },
       {
-        label: "experience.nodes",
-        value: `${experience.length} active records`,
-      },
-      {
-        label: "incident.records",
-        value: `${outages.length} published entries`,
-      },
-      {
-        label: "project.artifacts",
-        value: `${projects.length} highlighted builds`,
-      },
-      {
-        label: "stack.primary",
+        label: "cloud.core",
         value: topSkills.slice(0, 3).join(", ") || "AWS, Kubernetes, Terraform",
+      },
+      {
+        label: "delivery.surface",
+        value: `${projects.length} highlighted platform builds`,
+      },
+      {
+        label: "reliability.coverage",
+        value: `${outages.length} incident and recovery entries`,
+      },
+      {
+        label: "career.depth",
+        value: `${experience.length} production environments mapped`,
       },
     ]
       .map(
@@ -255,24 +257,32 @@ const renderHome = (data) => {
       copy: data.skills?.intro || "List the technologies, tooling, and platform areas you work with.",
       link: "/skills/",
       route: "/skills",
+      metric: `${skills.length} skill zones`,
+      signal: topSkills.slice(0, 2).join(" + ") || "Cloud + Platform",
     },
     {
       title: "Issues and Outages",
       copy: data.outages?.intro || "Highlight incidents you investigated, stabilized, and closed out.",
       link: "/outages/",
       route: "/outages",
+      metric: `${outages.length} response stories`,
+      signal: "Recovery, mitigation, continuity",
     },
     {
       title: "Projects and Innovations",
       copy: data.projects?.intro || "Show the automation, platforms, and improvements you have delivered.",
       link: "/projects/",
       route: "/projects",
+      metric: `${projects.length} platform builds`,
+      signal: "Automation, DevSecOps, optimization",
     },
     {
       title: "Professional Experience",
       copy: data.experience?.intro || "Summarize the environments, teams, and outcomes you have worked on.",
       link: "/experience/",
       route: "/experience",
+      metric: `${experience.length} career nodes`,
+      signal: "Banking, ecommerce, messaging",
     },
   ];
 
@@ -282,15 +292,71 @@ const renderHome = (data) => {
       .map(
         (item) => `
           <article class="preview-card">
-            <p class="chip-label">${escapeHtml(item.route)}</p>
+            <div class="preview-top">
+              <p class="chip-label">${escapeHtml(item.route)}</p>
+              <p class="preview-metric">${escapeHtml(item.metric)}</p>
+            </div>
             <h3>${escapeHtml(item.title)}</h3>
             <p class="card-copy">${escapeHtml(item.copy)}</p>
+            <p class="preview-signal">${escapeHtml(item.signal)}</p>
             <a class="card-link" href="${item.link}">Open Page</a>
           </article>
         `
       )
       .join("")
   );
+};
+
+const sleep = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+
+const createIntroController = () => {
+  if (page !== "home") {
+    return {
+      finish: async () => {},
+    };
+  }
+
+  let shouldShowIntro = true;
+
+  try {
+    shouldShowIntro = !window.sessionStorage.getItem(INTRO_STORAGE_KEY);
+  } catch (error) {
+    shouldShowIntro = true;
+  }
+
+  const startedAt = performance.now();
+
+  if (!shouldShowIntro) {
+    document.body.dataset.intro = "complete";
+
+    return {
+      finish: async () => {},
+    };
+  }
+
+  document.body.dataset.intro = "active";
+
+  return {
+    finish: async () => {
+      const elapsed = performance.now() - startedAt;
+      const remaining = Math.max(0, INTRO_MIN_DURATION - elapsed);
+
+      if (remaining) {
+        await sleep(remaining);
+      }
+
+      document.body.dataset.intro = "done";
+
+      try {
+        window.sessionStorage.setItem(INTRO_STORAGE_KEY, "1");
+      } catch (error) {
+        // Ignore storage errors and continue the intro flow.
+      }
+
+      await sleep(900);
+      document.body.dataset.intro = "complete";
+    },
+  };
 };
 
 const renderSkills = (data) => {
@@ -492,6 +558,8 @@ const renderErrorState = (message) => {
 };
 
 const init = async () => {
+  const introController = createIntroController();
+
   try {
     const response = await fetch(CONTENT_FILE);
 
@@ -526,6 +594,8 @@ const init = async () => {
     renderErrorState(
       "The portfolio content file could not be loaded. Check /content/portfolio-content.json and make sure it is valid JSON."
     );
+  } finally {
+    await introController.finish();
   }
 };
 
