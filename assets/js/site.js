@@ -116,6 +116,47 @@ const renderHome = (data) => {
     .flatMap((category) => category.items || [])
     .filter(Boolean)
     .slice(0, 6);
+  const telemetryItems = [
+    {
+      label: "skills.catalog",
+      value: `${skills.length} categories`,
+      note: topSkills.slice(0, 2).join(" + ") || "Core stack mapped",
+      meter: skills.length,
+      tone: "cool",
+    },
+    {
+      label: "stack.surface",
+      value: `${topSkills.length} featured tools`,
+      note: topSkills.slice(0, 3).join(", ") || "Platform surface",
+      meter: topSkills.length,
+      tone: "warm",
+    },
+    {
+      label: "incident.memory",
+      value: `${outages.length} response records`,
+      note: "Stability and recovery history",
+      meter: outages.length,
+      tone: "cool",
+    },
+    {
+      label: "project.shipments",
+      value: `${projects.length} highlighted builds`,
+      note: "Automation and platform delivery",
+      meter: projects.length,
+      tone: "warm",
+    },
+    {
+      label: "career.nodes",
+      value: `${experience.length} experience entries`,
+      note: "Operating environments tracked",
+      meter: experience.length,
+      tone: "cool",
+    },
+  ];
+  const telemetryMax = Math.max(
+    ...telemetryItems.map((item) => item.meter),
+    1
+  );
 
   setText("#hero-summary", site.heroSummary || "");
   setLink("#resume-link", site.resumeFile || "/uploads/resume.pdf", site.resumeLabel || "Download Resume");
@@ -181,6 +222,31 @@ const renderHome = (data) => {
     (site.about || [])
       .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
       .join("") || renderEmptyState("Add your profile summary paragraphs in the content file.")
+  );
+
+  setHtml(
+    "#telemetry-grid",
+    telemetryItems
+      .map((item) => {
+        const percent = Math.max(
+          22,
+          Math.round((item.meter / telemetryMax) * 100)
+        );
+
+        return `
+          <article class="telemetry-card" data-tone="${escapeHtml(item.tone)}">
+            <div class="telemetry-head">
+              <p class="chip-label">${escapeHtml(item.label)}</p>
+              <p class="telemetry-value">${escapeHtml(item.value)}</p>
+            </div>
+            <div class="telemetry-meter">
+              <span class="telemetry-fill" style="width: ${percent}%"></span>
+            </div>
+            <p class="telemetry-note">${escapeHtml(item.note)}</p>
+          </article>
+        `;
+      })
+      .join("")
   );
 
   const previewCards = [
@@ -401,7 +467,14 @@ const renderExperience = (data) => {
 
 const renderErrorState = (message) => {
   const targets = {
-    home: ["#contact-list", "#hero-tags", "#hero-console", "#about-content", "#page-previews"],
+    home: [
+      "#contact-list",
+      "#hero-tags",
+      "#hero-console",
+      "#about-content",
+      "#telemetry-grid",
+      "#page-previews",
+    ],
     skills: ["#skills-grid"],
     outages: ["#outages-list"],
     projects: ["#projects-grid"],
