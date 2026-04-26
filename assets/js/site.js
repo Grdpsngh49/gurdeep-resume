@@ -111,54 +111,13 @@ const renderSharedContent = (data) => {
 const renderHome = (data) => {
   const site = data.site || {};
   const skills = data.skills?.categories || [];
-  const outages = data.outages?.items || [];
-  const projects = data.projects?.items || [];
-  const experience = data.experience?.items || [];
   const topSkills = skills
     .flatMap((category) => category.items || [])
     .filter(Boolean)
     .slice(0, 6);
-  const telemetryItems = [
-    {
-      label: "skills.catalog",
-      value: `${skills.length} categories`,
-      note: topSkills.slice(0, 2).join(" + ") || "Core stack mapped",
-      meter: skills.length,
-      tone: "cool",
-    },
-    {
-      label: "stack.surface",
-      value: `${topSkills.length} featured tools`,
-      note: topSkills.slice(0, 3).join(", ") || "Platform surface",
-      meter: topSkills.length,
-      tone: "warm",
-    },
-    {
-      label: "incident.memory",
-      value: `${outages.length} response records`,
-      note: "Stability and recovery history",
-      meter: outages.length,
-      tone: "cool",
-    },
-    {
-      label: "project.shipments",
-      value: `${projects.length} highlighted builds`,
-      note: "Automation and platform delivery",
-      meter: projects.length,
-      tone: "warm",
-    },
-    {
-      label: "career.nodes",
-      value: `${experience.length} experience entries`,
-      note: "Operating environments tracked",
-      meter: experience.length,
-      tone: "cool",
-    },
-  ];
-  const telemetryMax = Math.max(
-    ...telemetryItems.map((item) => item.meter),
-    1
-  );
+  const outages = data.outages?.items || [];
+  const projects = data.projects?.items || [];
+  const experience = data.experience?.items || [];
 
   setText("#hero-summary", site.heroSummary || "");
   setLink("#resume-link", site.resumeFile || "/uploads/resume.pdf", site.resumeLabel || "Download Resume");
@@ -184,71 +143,10 @@ const renderHome = (data) => {
   );
 
   setHtml(
-    "#hero-console",
-    [
-      {
-        label: "platform.focus",
-        value: site.role || "DevOps Engineer | Platform Engineer",
-      },
-      {
-        label: "cloud.core",
-        value: topSkills.slice(0, 3).join(", ") || "AWS, Kubernetes, Terraform",
-      },
-      {
-        label: "delivery.surface",
-        value: `${projects.length} highlighted platform builds`,
-      },
-      {
-        label: "reliability.coverage",
-        value: `${outages.length} incident and recovery entries`,
-      },
-      {
-        label: "career.depth",
-        value: `${experience.length} production environments mapped`,
-      },
-    ]
-      .map(
-        (item) => `
-          <div class="console-line">
-            <span class="console-prompt">$</span>
-            <span class="console-command">${escapeHtml(item.label)}</span>
-            <span class="console-value">${escapeHtml(item.value)}</span>
-          </div>
-        `
-      )
-      .join("")
-  );
-
-  setHtml(
     "#about-content",
     (site.about || [])
       .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
       .join("") || renderEmptyState("Add your profile summary paragraphs in the content file.")
-  );
-
-  setHtml(
-    "#telemetry-grid",
-    telemetryItems
-      .map((item) => {
-        const percent = Math.max(
-          22,
-          Math.round((item.meter / telemetryMax) * 100)
-        );
-
-        return `
-          <article class="telemetry-card" data-tone="${escapeHtml(item.tone)}">
-            <div class="telemetry-head">
-              <p class="chip-label">${escapeHtml(item.label)}</p>
-              <p class="telemetry-value">${escapeHtml(item.value)}</p>
-            </div>
-            <div class="telemetry-meter">
-              <span class="telemetry-fill" style="width: ${percent}%"></span>
-            </div>
-            <p class="telemetry-note">${escapeHtml(item.note)}</p>
-          </article>
-        `;
-      })
-      .join("")
   );
 
   const previewCards = [
@@ -536,9 +434,7 @@ const renderErrorState = (message) => {
     home: [
       "#contact-list",
       "#hero-tags",
-      "#hero-console",
       "#about-content",
-      "#telemetry-grid",
       "#page-previews",
     ],
     skills: ["#skills-grid"],

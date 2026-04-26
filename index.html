@@ -10,6 +10,7 @@
     />
     <link rel="stylesheet" href="/assets/css/site.css" />
     <script src="/assets/js/site.js" defer></script>
+    <script src="/assets/js/hero-webgl.js" defer></script>
   </head>
   <body data-page="home" data-intro="active">
     <div class="welcome-screen" aria-hidden="true">
@@ -44,6 +45,7 @@
 
       <main class="page page-home">
         <section class="hero panel">
+          <div class="hero-webgl" id="hero-webgl" aria-hidden="true"></div>
           <div class="hero-topology" aria-hidden="true">
             <span class="topology-ring topology-ring-a"></span>
             <span class="topology-ring topology-ring-b"></span>
@@ -79,15 +81,6 @@
               <p class="panel-title">Access</p>
               <ul class="contact-list" id="contact-list"></ul>
             </div>
-            <div class="hero-console">
-              <div class="console-top">
-                <span class="console-dot"></span>
-                <span class="console-dot"></span>
-                <span class="console-dot"></span>
-                <p class="console-title">profile.signal</p>
-              </div>
-              <div class="console-body" id="hero-console"></div>
-            </div>
           </aside>
         </section>
 
@@ -97,14 +90,6 @@
             <h2>About Me</h2>
           </div>
           <div class="stacked-copy" id="about-content"></div>
-        </section>
-
-        <section class="panel telemetry-panel">
-          <div class="section-heading">
-            <p class="eyebrow">System Telemetry</p>
-            <h2>Operational Signal Map</h2>
-          </div>
-          <div class="telemetry-grid" id="telemetry-grid"></div>
         </section>
 
         <section class="panel preview-panel">
