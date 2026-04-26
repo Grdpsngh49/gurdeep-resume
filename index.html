@@ -39,6 +39,7 @@
             <p class="hero-summary" id="hero-summary">
               Add your short positioning statement in the portfolio content file.
             </p>
+            <ul class="tags hero-tags" id="hero-tags"></ul>
             <div class="hero-actions">
               <a class="button button-primary" id="resume-link" href="/uploads/resume.pdf" download>
                 Download Resume
@@ -49,27 +50,28 @@
             </div>
           </div>
           <aside class="hero-panel">
-            <p class="panel-title">Contact</p>
-            <ul class="contact-list" id="contact-list"></ul>
+            <div class="hero-panel-section">
+              <p class="panel-title">Access</p>
+              <ul class="contact-list" id="contact-list"></ul>
+            </div>
+            <div class="hero-console">
+              <div class="console-top">
+                <span class="console-dot"></span>
+                <span class="console-dot"></span>
+                <span class="console-dot"></span>
+                <p class="console-title">runtime.log</p>
+              </div>
+              <div class="console-body" id="hero-console"></div>
+            </div>
           </aside>
         </section>
 
-        <section class="content-grid">
-          <article class="panel about-panel">
-            <div class="section-heading">
-              <p class="eyebrow">Profile</p>
-              <h2>About Me</h2>
-            </div>
-            <div class="stacked-copy" id="about-content"></div>
-          </article>
-
-          <article class="panel overview-panel">
-            <div class="section-heading">
-              <p class="eyebrow">Overview</p>
-              <h2>Portfolio Snapshot</h2>
-            </div>
-            <div class="stats-grid" id="stats-grid"></div>
-          </article>
+        <section class="panel about-panel">
+          <div class="section-heading">
+            <p class="eyebrow">Profile</p>
+            <h2>About Me</h2>
+          </div>
+          <div class="stacked-copy" id="about-content"></div>
         </section>
 
         <section class="panel preview-panel">

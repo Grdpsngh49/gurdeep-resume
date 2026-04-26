@@ -112,6 +112,10 @@ const renderHome = (data) => {
   const outages = data.outages?.items || [];
   const projects = data.projects?.items || [];
   const experience = data.experience?.items || [];
+  const topSkills = skills
+    .flatMap((category) => category.items || [])
+    .filter(Boolean)
+    .slice(0, 6);
 
   setText("#hero-summary", site.heroSummary || "");
   setLink("#resume-link", site.resumeFile || "/uploads/resume.pdf", site.resumeLabel || "Download Resume");
@@ -130,41 +134,53 @@ const renderHome = (data) => {
   );
 
   setHtml(
-    "#about-content",
-    (site.about || [])
-      .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
-      .join("") || renderEmptyState("Add your profile summary paragraphs in the content file.")
+    "#hero-tags",
+    topSkills.length
+      ? topSkills.map((skill) => `<li class="tag">${escapeHtml(skill)}</li>`).join("")
+      : renderListEmptyState("Add skills in the content file.")
   );
 
   setHtml(
-    "#stats-grid",
+    "#hero-console",
     [
       {
-        label: "Skill Categories",
-        value: skills.length,
+        label: "role.current",
+        value: site.role || "DevOps Engineer | Platform Engineer",
       },
       {
-        label: "Handled Outages",
-        value: outages.length,
+        label: "experience.nodes",
+        value: `${experience.length} active records`,
       },
       {
-        label: "Projects",
-        value: projects.length,
+        label: "incident.records",
+        value: `${outages.length} published entries`,
       },
       {
-        label: "Experience Entries",
-        value: experience.length,
+        label: "project.artifacts",
+        value: `${projects.length} highlighted builds`,
+      },
+      {
+        label: "stack.primary",
+        value: topSkills.slice(0, 3).join(", ") || "AWS, Kubernetes, Terraform",
       },
     ]
       .map(
         (item) => `
-          <article class="stat-card">
-            <p class="stat-label">${escapeHtml(item.label)}</p>
-            <p class="stat-value">${escapeHtml(item.value)}</p>
-          </article>
+          <div class="console-line">
+            <span class="console-prompt">$</span>
+            <span class="console-command">${escapeHtml(item.label)}</span>
+            <span class="console-value">${escapeHtml(item.value)}</span>
+          </div>
         `
       )
       .join("")
+  );
+
+  setHtml(
+    "#about-content",
+    (site.about || [])
+      .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+      .join("") || renderEmptyState("Add your profile summary paragraphs in the content file.")
   );
 
   const previewCards = [
@@ -172,21 +188,25 @@ const renderHome = (data) => {
       title: "Technical Skills",
       copy: data.skills?.intro || "List the technologies, tooling, and platform areas you work with.",
       link: "/skills/",
+      route: "/skills",
     },
     {
       title: "Issues and Outages",
       copy: data.outages?.intro || "Highlight incidents you investigated, stabilized, and closed out.",
       link: "/outages/",
+      route: "/outages",
     },
     {
       title: "Projects and Innovations",
       copy: data.projects?.intro || "Show the automation, platforms, and improvements you have delivered.",
       link: "/projects/",
+      route: "/projects",
     },
     {
       title: "Professional Experience",
       copy: data.experience?.intro || "Summarize the environments, teams, and outcomes you have worked on.",
       link: "/experience/",
+      route: "/experience",
     },
   ];
 
@@ -196,6 +216,7 @@ const renderHome = (data) => {
       .map(
         (item) => `
           <article class="preview-card">
+            <p class="chip-label">${escapeHtml(item.route)}</p>
             <h3>${escapeHtml(item.title)}</h3>
             <p class="card-copy">${escapeHtml(item.copy)}</p>
             <a class="card-link" href="${item.link}">Open Page</a>
@@ -380,7 +401,7 @@ const renderExperience = (data) => {
 
 const renderErrorState = (message) => {
   const targets = {
-    home: ["#contact-list", "#about-content", "#stats-grid", "#page-previews"],
+    home: ["#contact-list", "#hero-tags", "#hero-console", "#about-content", "#page-previews"],
     skills: ["#skills-grid"],
     outages: ["#outages-list"],
     projects: ["#projects-grid"],
@@ -388,7 +409,7 @@ const renderErrorState = (message) => {
   };
 
   (targets[page] || []).forEach((selector) => {
-    if (selector === "#contact-list") {
+    if (selector === "#contact-list" || selector === "#hero-tags") {
       setHtml(selector, renderListEmptyState(message));
       return;
     }
